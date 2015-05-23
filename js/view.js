@@ -5,12 +5,6 @@ $( 'document' ).ready(function(){
       lines = $(' #lines');
 
 
-
-  // TweenMax.to(top, 3, {
-  //   bottom: 500, 
-  //   ease:Circ.easeInOut
-  // });
-
   var notes = {};
 
   notes.map = {
@@ -27,8 +21,6 @@ $( 'document' ).ready(function(){
     n11: 265,
     n12: 320
   }
-
-
 
 
 TweenMax.set(top, {
