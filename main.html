@@ -8,21 +8,30 @@
 </head>
 
 <body>
-  <div id="main">
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="88px" height="70px" viewBox="0 0 88 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
-    <title>Oval 1</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
-            <feGaussianBlur stdDeviation="2.57352941 0" in="SourceGraphic" result="blur"></feGaussianBlur>
-        </filter>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <circle id="Oval-1" fill="#EE6A6A" filter="url(#filter-1)" sketch:type="MSShapeGroup" cx="44" cy="35" r="35"></circle>
-    </g>
-</svg>
+
+  <div class="pitch-object">
+    <form>
+      <p>
+        Pitch 1 Frequency (Hz)
+        <input id="freq1" type='text'>
+        Pitch 1 Amplitude (0 <--> 1)
+        <input id='amp1' type='text'>
+        <button type="button" id="update-wave-1">update</button>
+        <button type="button" id="play-pause-wave-1">Play</button>
+      </p>
+  </div>
+
+  <div id='pitch2' class'pitch-object'>
+    <form>
+      <p>
+        Pitch 2 Frequency (Hz)
+        <input id="freq2" type='text'>
+        Pitch 2 Amplitude (0 <--> 1)
+        <input id='amp2' type='text'>
+        <button type="button" id="update-wave-2">update</button>
+        <button type="button" id="play-pause-wave-2">Play</button>
+      </p>
+    </form>
   </div>
 
 
@@ -30,6 +39,8 @@
 
   <script src="dependencies/jquery.min.js"></script>
   <script src="dependencies/tweenmax.min.js"></script>
+  <script src="js/models/SineWave.js"></script>
   <script src="js/main.js"></script>
+
 </body>
 
