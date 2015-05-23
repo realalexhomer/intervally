@@ -1,4 +1,3 @@
-
 // DOM selection and events for playing
 
 
@@ -54,3 +53,4 @@ $( document ).ready(function(){
       wave2.amplitude = $('#amp2').val()
       console.log(wave2.freq)
     })
+
