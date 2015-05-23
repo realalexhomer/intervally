@@ -8,6 +8,7 @@
 //2. create two audio objects with different frequencies
 //3. add play/pause button for both pitches
 //4. add change frequency box that changes frequency upon button press
+//5. add change amplitude box that changes amplitude upon button press
 
 $( document ).ready(function(){
   console.log('spagoo')
