@@ -1,18 +1,20 @@
-// DOM selection and events for playing
-
 
 $( document ).ready(function(){
 
   //generate audio context for each sinewave object
 
-    var context = new AudioContext();
+  var context = new AudioContext();
 
   //generate two sinewave objects
    wave1 = new SineWave(context);
    wave2 = new SineWave(context);
 
-  //update wave freq/amp functionality
+   //randomly select interval pair for wave1 and wave2 upon pageload
+   var selectRandomInterval = function (object) {
+    var keys = Object.keys(object);
+    return object[keys]
 
+   }
 
   //play-pause functionality
 
@@ -54,3 +56,4 @@ $( document ).ready(function(){
       console.log(wave2.freq)
     })
 
+});
