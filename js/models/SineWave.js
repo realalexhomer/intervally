@@ -1,6 +1,4 @@
 
-// Amplitude of pitches
-
 
 SineWave = function(context) {
   var that = this;
