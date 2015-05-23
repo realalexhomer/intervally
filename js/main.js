@@ -12,9 +12,10 @@ $( document ).ready(function(){
    //randomly select interval pair for wave1 and wave2 upon pageload
    var selectRandomInterval = function (object) {
     var keys = Object.keys(object);
-    return object[keys]
-
+    return object[keys [ keys.length * Math.random() << 0]]
    }
+
+   console.log(selectRandomInterval(cMajor));
 
   //play-pause functionality
 
