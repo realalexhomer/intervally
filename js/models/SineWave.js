@@ -30,8 +30,8 @@ SineWave.prototype.pause = function () {
   this.node.disconnect();
 }
 
-// SineWave.prototype.setFrequency = function ( freq ) {
-//   this.freq = freq;
-// }
+SineWave.prototype.setFrequency = function ( freq ) {
+  this.freq = freq;
+}
 
 
