@@ -54,4 +54,3 @@ $( document ).ready(function(){
       console.log(wave2.freq)
     })
 
-});

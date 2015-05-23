@@ -34,13 +34,43 @@
     </form>
   </div>
 
+ <div class="blobs">
+  <div id="top" class="blob">2</div>
+  <div id="bot" class="blob">1</div>
+</div>
+
+<div class="lines">
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+  <div class="hline"></div>
+</div>
 
 
+
+<!-- filters -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
 
   <script src="dependencies/jquery.min.js"></script>
   <script src="dependencies/tweenmax.min.js"></script>
   <script src="js/models/SineWave.js"></script>
   <script src="js/main.js"></script>
-
+  <script src="js/view.js"></script>
 </body>
 
