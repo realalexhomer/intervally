@@ -6,6 +6,7 @@ SineWave = function(context) {
   this.context = context;
   this.freq = 440;
   this.amplitude = 0.5;
+  this.playing = false;
   this.node = context.createScriptProcessor(1024, 1, 1);
   this.node.onaudioprocess = function(event) { that.process(event) };
   this.sampleRate = this.context.sampleRate;
