@@ -16,3 +16,10 @@ SineWave.prototype.process = function(event) {
   }
 }
 
+SineWave.prototype.play = function () {
+  this.node.connect(this.context.destination);
+}
+
+SineWave.prototype.pause = function () {
+  this.node.disconnect();
+}
