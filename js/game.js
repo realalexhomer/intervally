@@ -7,7 +7,7 @@ $('document').ready(function(){
       gameTemplate  =   Handlebars.compile(gameSource);
       winHeight     =   $( window ).height(),
       winWidth      =   $( window ).width(),
-      numberOfLines =   12,
+      numberOfLines =   13,
       lines         =   {},
       lineWidth     =   winWidth * .8,
       lineMargin    =   (winHeight + 150) / numberOfLines;
@@ -24,24 +24,38 @@ $('document').ready(function(){
     lineWidth: lineWidth
   }
 
-  $('body').append(gameTemplate(data));
+  function changeWave(wave, closestLine){
+    wave.setFrequency(keyOfC[closestLine-1])
+  }
 
+  function findClosestLine(obj){
+//TODO FIND CLOSEST LINE
+  }
+
+  wave1.setFrequency()
+
+  console.log(wave1);
+
+  $('body').append(gameTemplate(data));
 
   /// INSTANTIATE & START USING SNAP
 
   var s           =   Snap("#canvas"),
       canvas      =   $('#canvas'),
+      staffHeight =   lines.line13.y - lines.line1.x,
       lineCenter  =   lines.line1.x + lineWidth * .5,
-      circle      =   s.circle(lineCenter,lines.line6.y,30),
-      circle2     =   s.circle(lineCenter,lines.line6.y,30);
-      bigCircle   =   s.circle(lineCenter, lines.line6.y, 40),
+      circle      =   s.circle(lineCenter,lines.line7.y,30),
+      circle2     =   s.circle(lineCenter,lines.line7.y,30);
+      // bigCircle   =   s.circle(lineCenter, lines.line6.y, 40),
 
   circle.parent().addClass("goo");
   circle.attr('fill','#86E2D5');
-  bindClick();
+  // bindClick();
+  console.log(staffHeight);
 
-  // bigCircle.drag();
 
+  circle.drag();
+  circle2.drag();
 
   function changeColors(elmArr){
     var color = randFlatColor();
@@ -60,18 +74,20 @@ $('document').ready(function(){
   function goToLines(line1, line2){
 
   }
-function bindClick(){
-  canvas.one('click',function(){
-    splitOff();
-  setTimeout(function(){
-    resetBalls();
-  },3000)
-    changeColors([circle, circle2, bigCircle]);
-  });
-  setTimeout(function(){
-    bindClick();
-  }, 5500)
-}
+
+  function bindClick(){
+    canvas.one('click',function(){
+      splitOff();
+    setTimeout(function(){
+      resetBalls();
+    },3000)
+      changeColors([circle, circle2, bigCircle]);
+    });
+    setTimeout(function(){
+      bindClick();
+    }, 5500)
+  }
+
   function splitOff(){
     shrinkAndDie(bigCircle);
     goLeft(circle);
@@ -83,8 +99,8 @@ function bindClick(){
   }
 
   function resetBalls(){
-    circleToLine(circle, 6);
-    circleToLine(circle2, 6);
+    circleToLine(circle, 7);
+    circleToLine(circle2, 7);
     setTimeout(function(){
       becomeWholeAgain(bigCircle);
     },800)
@@ -142,6 +158,40 @@ function bindClick(){
       cy: lines[lineKey].y,
     },1000);
   }
+
+
+
+var keyOfC  =   [
+                  523.251,
+                  493.883,
+                  466.164,
+                  440.000,
+                  415.305,
+                  391.995,
+                  369.994,
+                  349.228,
+                  329.628,
+                  311.127,
+                  293.665,
+                  277.183,
+                  261.626
+                ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });
