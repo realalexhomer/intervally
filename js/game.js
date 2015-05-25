@@ -3,26 +3,101 @@ $('document').ready(function(){
 
   /// MAKE LINES FROM SVG
 
-  var gameSource    =   $( "#game-template").html(),
-      gameTemplate  =   Handlebars.compile(gameSource);
-      winHeight     =   $( window ).height(),
-      winWidth      =   $( window ).width(),
-      numberOfLines =   13,
-      lines         =   {},
-      lineWidth     =   winWidth * .8,
-      lineMargin    =   (winHeight + 150) / numberOfLines;
+  var keyOfC  = [
+                  523.251,
+                  493.883,
+                  466.164,
+                  440.000,
+                  415.305,
+                  391.995,
+                  369.994,
+                  349.228,
+                  329.628,
+                  311.127,
+                  293.665,
+                  277.183,
+                  261.626
+                ]
 
-  for (var i = 0; i < numberOfLines; i++){
-    var key = 'line' + (i + 1).toString();
-    lines[key] = {}
-    lines[key].x     = winWidth * .2;
-    lines[key].y     = lineMargin * (i + 1) + 50;
+  var gameSource        =   $( "#game-template").html(),
+      gameTemplate      =   Handlebars.compile(gameSource);
+      winHeight         =   $( window ).height(),
+      winWidth          =   $( window ).width(),
+      topMargin         =   100,
+      bottomMargin      =   50,
+      numberOfLines     =   13,
+      lines             =   {},
+      lineWidth         =   winWidth * .8,
+      linesX            =   winWidth * .2,
+      lineMargin        =   (winHeight + 150) / numberOfLines,
+      freqRangeSize     =   findFreqRangeSize(keyOfC),
+      lowestFreq        =   findLowestFreq(keyOfC),
+      highestFreq       =   findHighestFreq(keyOfC),
+      freqToCanvasRatio =   findFreqToCanvasRatio(winHeight, freqRangeSize);
+
+  // for (var i = 0; i < numberOfLines; i++){
+  //   var key = 'line' + (i + 1).toString();
+  //   lines[key] = {}
+  //   lines[key].x     = winWidth * .2;
+  //   lines[key].y     = lineMargin * (i + 1) + 50;
+  // }
+
+  function drawLines(freqsArr){
+    for (var i = 0; i < freqsArr.length; i++){
+      var key = 'line' + (i + 1).toString();
+      if (!lines[key]) {lines[key] = {}};
+      lines[key].x = linesX;
+      // lines[key].y = lineMargin * (i + 1) + 50;
+      lines[key].y = ((highestFreq - freqsArr[i]) * freqToCanvasRatio)+ topMargin;
+    }
   }
 
-  var data = {
-    lines: lines,
-    lineWidth: lineWidth
+  console.log(winHeight, freqRangeSize);
+
+  function findFreqToCanvasRatio(canvasHeight, freqRangeSize){
+    return (canvasHeight / freqRangeSize);
   }
+
+  console.log(freqToCanvasRatio)
+  // canvasHeight;
+  // freqHeight;
+  // freq;
+
+  // want canvasHeight / freqHeight = freqUnits 
+
+
+  // ratio;
+  // freq;
+  // highestFreq;
+
+  //winHeight
+
+
+  // (highestFreq - freq) = distance between the bottom & line;
+
+  // winHeight - 
+
+
+  drawLines(keyOfC);
+
+    var data = {
+      lines: lines,
+      lineWidth: lineWidth
+    }
+  function findFreqRangeSize(freqArr){
+    return freqArr[0] - freqArr[freqArr.length-1];
+  }
+
+  function findLowestFreq(freqArr){
+    return freqArr[freqArr.length -1];
+  }
+
+  function findHighestFreq(freqArr){
+    return freqArr[0];
+  }
+
+  // console.log(freqRangeSize);
+
 
   function changeWave(wave, closestLine){
     wave.setFrequency(keyOfC[closestLine-1])
@@ -34,10 +109,14 @@ $('document').ready(function(){
 
   wave1.setFrequency()
 
-  console.log(wave1);
+  // console.log(wave1);
 
-  $('body').append(gameTemplate(data));
+  $('body').append(gameTemplate(data)); // Initiate canvas //
 
+      var canvasHeight  =   $( '#canvas' ).height(),
+          canvasWidth   =   $( '#canvas' ).width();
+
+      // console.log(canvasHeight);
   /// INSTANTIATE & START USING SNAP
 
   var s           =   Snap("#canvas"),
@@ -51,8 +130,9 @@ $('document').ready(function(){
   circle.parent().addClass("goo");
   circle.attr('fill','#86E2D5');
   // bindClick();
-  console.log(staffHeight);
+  // console.log(staffHeight);
 
+  circle3 = s.circle(winHeight, winHeight, 50);
 
   circle.drag();
   circle2.drag();
@@ -158,25 +238,6 @@ $('document').ready(function(){
       cy: lines[lineKey].y,
     },1000);
   }
-
-
-
-var keyOfC  =   [
-                  523.251,
-                  493.883,
-                  466.164,
-                  440.000,
-                  415.305,
-                  391.995,
-                  369.994,
-                  349.228,
-                  329.628,
-                  311.127,
-                  293.665,
-                  277.183,
-                  261.626
-                ]
-
 
 
 
