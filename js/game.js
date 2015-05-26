@@ -20,7 +20,7 @@ $('document').ready(function(){
                 ]
 
   var gameSource        =   $( "#game-template").html(),
-      gameTemplate      =   Handlebars.compile(gameSource);
+      // gameTemplate      =   Handlebars.compile(gameSource);
       winHeight         =   $( window ).height(),
       winWidth          =   $( window ).width(),
       topMargin         =   100,
@@ -35,6 +35,14 @@ $('document').ready(function(){
       highestFreq       =   findHighestFreq(keyOfC),
       freqToCanvasRatio =   findFreqToCanvasRatio(winHeight, freqRangeSize);
 
+
+  // var s           =   Snap(),
+      // canvas      =   $('#canvas');
+      // staffHeight =   lines.line13.y - lines.line1.x,
+      // lineCenter  =   lines.line1.x + lineWidth * .5,
+      // circle      =   s.circle(lineCenter,lines.line7.y,30),
+      // circle2     =   s.circle(lineCenter,lines.line7.y,30);
+
   // for (var i = 0; i < numberOfLines; i++){
   //   var key = 'line' + (i + 1).toString();
   //   lines[key] = {}
@@ -42,15 +50,34 @@ $('document').ready(function(){
   //   lines[key].y     = lineMargin * (i + 1) + 50;
   // }
 
-  function drawLines(freqsArr){
-    for (var i = 0; i < freqsArr.length; i++){
-      var key = 'line' + (i + 1).toString();
-      if (!lines[key]) {lines[key] = {}};
-      lines[key].x = linesX;
-      // lines[key].y = lineMargin * (i + 1) + 50;
-      lines[key].y = ((highestFreq - freqsArr[i]) * freqToCanvasRatio)+ topMargin;
+
+console.log(winHeight);
+  // s.rect(y,x,w,h)
+
+
+
+
+  function drawLines(freqArr){
+    for (var i = 0; i < freqArr.length; i++){
+      var key = 'line' + (i+1).toString();
+      if (!lines[key]) {
+        lines[key] = s.rect(10,100,100,10);
+        // lines[key].attr('fill', '#D8D8D8');
+      } 
     }
   }
+  // drawLines(keyOfC);
+
+
+  // function drawLines(freqsArr){
+  //   for (var i = 0; i < freqsArr.length; i++){
+  //     var key = 'line' + (i + 1).toString();
+  //     if (!lines[key]) {lines[key] = {}};
+  //     lines[key].x = linesX;
+  //     // lines[key].y = lineMargin * (i + 1) + 50;
+  //     lines[key].y = ((highestFreq - freqsArr[i]) * freqToCanvasRatio)+ topMargin;
+  //   }
+  // }
 
   console.log(winHeight, freqRangeSize);
 
@@ -59,31 +86,17 @@ $('document').ready(function(){
   }
 
   console.log(freqToCanvasRatio)
-  // canvasHeight;
-  // freqHeight;
-  // freq;
 
-  // want canvasHeight / freqHeight = freqUnits 
+  var test = Snap('#testing');
 
-
-  // ratio;
-  // freq;
-  // highestFreq;
-
-  //winHeight
-
-
-  // (highestFreq - freq) = distance between the bottom & line;
-
-  // winHeight - 
-
-
-  drawLines(keyOfC);
+  test.rect(1,2,2,2);
+  // drawLines(keyOfC);
 
     var data = {
       lines: lines,
       lineWidth: lineWidth
     }
+
   function findFreqRangeSize(freqArr){
     return freqArr[0] - freqArr[freqArr.length-1];
   }
@@ -111,7 +124,7 @@ $('document').ready(function(){
 
   // console.log(wave1);
 
-  $('body').append(gameTemplate(data)); // Initiate canvas //
+  // $('body').append(gameTemplate(data)); 
 
       var canvasHeight  =   $( '#canvas' ).height(),
           canvasWidth   =   $( '#canvas' ).width();
@@ -119,23 +132,17 @@ $('document').ready(function(){
       // console.log(canvasHeight);
   /// INSTANTIATE & START USING SNAP
 
-  var s           =   Snap("#canvas"),
-      canvas      =   $('#canvas'),
-      staffHeight =   lines.line13.y - lines.line1.x,
-      lineCenter  =   lines.line1.x + lineWidth * .5,
-      circle      =   s.circle(lineCenter,lines.line7.y,30),
-      circle2     =   s.circle(lineCenter,lines.line7.y,30);
       // bigCircle   =   s.circle(lineCenter, lines.line6.y, 40),
 
-  circle.parent().addClass("goo");
-  circle.attr('fill','#86E2D5');
+  // circle.parent().addClass("goo");
+  // circle.attr('fill','#86E2D5');
   // bindClick();
   // console.log(staffHeight);
 
-  circle3 = s.circle(winHeight, winHeight, 50);
+  // circle3 = s.circle(winHeight, winHeight, 50);
 
-  circle.drag();
-  circle2.drag();
+  // circle.drag();
+  // circle2.drag();
 
   function changeColors(elmArr){
     var color = randFlatColor();
