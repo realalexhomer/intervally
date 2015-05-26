@@ -1,8 +1,12 @@
 $('document').ready(function(){
 
-  var s           = Snap('#main'),
-      lineHeight  = 10,
-      lineColor   = '#D8D8D8';
+  //Y AND X MARGINS ARE SET TO 50!!!
+
+  var s               = Snap('#main'),
+      waves           = {},
+      lineHeight      = 10,
+      lineColor       = '#D8D8D8',
+      audioContext    = new AudioContext();
 
 
 
@@ -14,8 +18,8 @@ $('document').ready(function(){
     findLines(keyObj);
     drawLines(keyObj);
     var test = drawCircle({
-      x: 0, 
-      y: 0, 
+      x: 500, 
+      y: 500, 
       size: 40, 
       fill:'green'
     });
@@ -25,12 +29,15 @@ $('document').ready(function(){
     //   size: 40,
     //   fill:'pink'
     // });
+    makeWave(test);
     test.drag()
-    test.drag(function(){
-      var bb = this.getBBox();
-      console.log(bb);
-    })
-
+    // changeWaveOnDrag(test, waves[test.name], 'cy', SineWave.prototype.setFrequency);
+    // console.log(keyObj);
+    changeFreqOnDrag(test, waves[test.name], keyObj);
+    // test.drag(function(){
+    //   var bb = this.getBBox();
+    //   console.log(bb);
+    // })
   }
 
   function makeKeyObj(freqArr){
@@ -70,22 +77,61 @@ $('document').ready(function(){
           h       = lineHeight;
       keyObj.lines[lineKey].el = s.rect(x,y,w,h);
       keyObj.lines[lineKey].el.attr('fill', lineColor);
+      console.log(y);
     }
+    console.log(keyObj.lines);
   }
 
   function drawCircle(a){
     var circle = s.circle(a.x, a.y, a.size);
     circle.attr('fill', a.fill);
+    circle.name = 'circle1'
     // circle.drag();
+    console.log(circle);
     return circle;
   }
 
-  function findFreq(keyObj, x){
-    return x / keyObj.ratio;
+  function makeWave(circle){
+    if (!waves[circle.name]){
+      waves[circle.name] = new SineWave(audioContext);
+      waves[circle.name].setFrequency(circle.attr('cy'));
+      waves[circle.name].play();
+    }else{
+      throw 'circle already has a wave - cannot set more than one wave for a circle.'
+    }
   }
 
-  function setElFreq(wave, x, ratio){
-    wave.setFrequency(x/ratio);
+  function changeWaveOnDrag(obj, wave, objAttr, waveFunc){
+    obj.drag(function(){
+      obj.bb = obj.getBBox();
+      waveFunc.call(wave, obj.bb[objAttr])
+    })
+  }
+
+  function changeFreqOnDrag(obj, wave, keyObj){
+    obj.drag(function(){
+      obj.bb = obj.getBBox();
+      var y = obj.bb.cy;
+      console.log(y);
+      // var freq = obj.bb.cy / keyObj.ratio
+      // wave.setFrequency(freq);
+      // // console.log(, keyObj.ratio)
+      // console.log(keyObj);
+      // // wave.setFrequency(obj.bb / keyObj.ratio)
+      // console.log(wave);
+
+    })
+  }
+
+  //
+  
+
+  function findFreq(keyObj, y){
+    return y / keyObj.ratio;
+  }
+
+  function setElFreq(wave, y, ratio){
+    wave.setFrequency(y/ratio);
   }
 
   function assignFreq(el, keyObj){
