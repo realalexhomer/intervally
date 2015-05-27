@@ -3,16 +3,17 @@ console.log(canvas);
 canvas.style.background='#cdd'
 var context = canvas.getContext('2d');
 
-var baseY=0;
-var halfX= canvas.width/2;
-var dy = 1;
+var dotX = 0;
+var dotY = canvas.height/2;
+var dx = 1;
 
-function drawYAxis(){
+function drawXAxis(){
   context.beginPath();
-  context.moveTo(halfX, baseY);
-  context.lineTo(halfX, canvas.height);
+  context.moveTo(0, dotY);
+  context.lineWidth = 1;
+  context.lineTo(canvas.width, dotY);
   context.stroke();
   console.log('drawing');
 }
 
-drawYAxis();
+drawXAxis();
