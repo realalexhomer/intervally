@@ -11,7 +11,6 @@ SineWave = function(context) {
   this.node.onaudioprocess = function(event) { that.process(event) };
   this.sampleRate = this.context.sampleRate;
 
-
 }
 
 SineWave.prototype.process = function(event) {

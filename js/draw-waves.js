@@ -1,49 +1,60 @@
-var canvas = $('canvas').get(0);
-console.log(canvas);
-canvas.style.background='#cdd'
-var context = canvas.getContext('2d');
+var canvas1 = $('canvas').get(0);
+var canvas2 = $('canvas').get(1);
+var canvas3 = $('canvas').get(2);
+
+var context1 = canvas1.getContext('2d');
+var context2 = canvas2.getContext('2d');
+var context3 = canvas3.getContext('2d');
+
+
+canvas1.style.background='#cdd'
 
 var dotX = 0;
-var dotY = canvas.height/2;
-var dx = 1;
+var dotY = canvas1.height/2;
+var dx = .5;
 
-function drawXAxis(){
-  context.beginPath();
-  context.moveTo(0, dotY);
-  context.lineWidth = 1;
-  context.lineTo(canvas.width, dotY);
-  context.stroke();
-  console.log('drawing');
+function draw(x,y, context){
+  context.fillRect(x,y,10,1);
 }
 
-function draw(x,y){
-  context.fillRect(x,y,5,5);
-}
 
-function sineY(x){
-  var amplitude = 20;
+//generate wave functions
+
+var audioContext = new AudioContext();
+
+//generate two sinewave objects
+  wave1 = new SineWave(audioContext);
+  wave2 = new SineWave(audioContext);
+  console.log(wave1);
+//Test Data setup
+  wave1.amplitude = 10;
+
+
+function returnSineValue(x, wave, canvas){
+  var amplitude = wave.amplitude;
   var period = x/canvas.width/4;
-  var freq = 20;
-  var phase = 180; //phase angle
+  var freq = wave.freq/20;
+  var phase = 0; //phase angle
 
   //return wave value at point
   return amplitude * Math.sin(freq*2*Math.PI * period);
 }
 
-function animateSinewave(){
+function animateSinewave(wave, canvas, context){
   if (dotX > canvas.width){
     dotX-5;
     dotY = canvas.height * 0.5 - 2.5;
   }else{
     dotX += dx;
-    dotY = canvas.height * 0.5 - 2.5 + sineY(dotX);
+        dotY = canvas.height * 0.5 - 2.5 + returnSineValue(dotX, wave, canvas);
   }
 
-  draw(dotX,dotY);
-
+  draw(dotX,dotY, context);
   var animation = requestAnimationFrame(function(){
-    animateSinewave();
+    animateSinewave(wave,canvas, context);
+
   });
 }
 
-animateSinewave();
+
+animateSinewave(wave1, canvas1, context1);
