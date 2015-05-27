@@ -16,4 +16,35 @@ function drawXAxis(){
   console.log('drawing');
 }
 
-drawXAxis();
+function draw(x,y){
+  context.fillRect(x,y,5,5);
+}
+
+function sineY(x){
+  var amplitude = 20;
+  var period = x/canvas.width/4;
+  var freq = 20;
+  var phase = 180; //phase angle
+
+  //return wave value at point
+  return amplitude * Math.sin(freq*2*Math.PI * period);
+}
+
+function animateSinewave(){
+  if (dotX > canvas.width){
+    dotX-5;
+    dotY = canvas.height * 0.5 - 2.5;
+  }else{
+    dotX += dx;
+    dotY = canvas.height * 0.5 - 2.5 + sineY(dotX);
+  }
+
+  draw(dotX,dotY);
+
+  var animation = requestAnimationFrame(function(){
+    animateSinewave();
+    console.log('animating');
+  });
+}
+
+animateSinewave();
