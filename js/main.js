@@ -15,7 +15,7 @@ $( document ).ready(function(){
     return object[keys [ keys.length * Math.random() << 0]]
    }
 
-   console.log(selectRandomInterval(cMajor));
+   // console.log(selectRandomInterval(cMajor));
 
   //play-pause functionality
 
