@@ -43,7 +43,6 @@ function animateSinewave(){
 
   var animation = requestAnimationFrame(function(){
     animateSinewave();
-    console.log('animating');
   });
 }
 
