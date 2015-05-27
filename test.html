@@ -3,12 +3,16 @@
 <head>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/test.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 
 <!--- DO NOT MESS WITH THE VIEW BOX YOU HAVE BEEN WARNED-->
-<body>  
-  <svg id="main" width="100%" height="100%" viewBox="-50 -50 1100 1100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<body>
+
+  <canvas class='wavebox'></canvas>
+
+  <svg id="main" style="float:right; margin-right:50px;" width="50%" height="100%" viewBox="-50 -50 1100 1100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
 
     <filter id="goo">
         <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
@@ -28,7 +32,7 @@
         <feBlend in2="shadow" in="goo" result="goo" />
         <feBlend in2="goo" in="SourceGraphic" result="mix" />
     </filter>
-    
+
 
   </svg>
 
@@ -43,4 +47,5 @@
 <script src="js/main.js"></script>
 <!-- <script src="js/game.js"></script> -->
 <script src="js/mvp.js"></script>
-</html> 
+<script src="js/draw-waves.js"></script>
+</html>
