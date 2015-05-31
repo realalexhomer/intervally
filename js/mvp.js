@@ -20,6 +20,7 @@ $('document').ready(function(){
       fill:'green'
     });
     test.drag()
+    test.getCenter()
     makeWave(test, keyObj);
   }
 
