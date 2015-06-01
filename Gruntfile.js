@@ -61,6 +61,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', ['wiredep']);
+  grunt.registerTask('build', ['sass', 'handlebars'])
   grunt.registerTask('serve', ['sass', 'express', 'watch'])
 
 

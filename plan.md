@@ -8,8 +8,8 @@ Mocha
 Bower
 Grunt
 
-
-
-
-
+Marionette
+Wireframe
+Audio library
+Teoria instead of music.js
 
