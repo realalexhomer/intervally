@@ -7,7 +7,6 @@ The interval ally you need to go from practicing guitar in your parents' basemen
 
 npm install
 bower install
-grunt build
 grunt serve
 
 
