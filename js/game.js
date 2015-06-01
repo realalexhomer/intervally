@@ -3,8 +3,7 @@ $('document').ready(function(){
 
   /// MAKE LINES FROM SVG
 
-  var keyOfC  = [
-                  523.251,
+  var1             523.251,
                   493.883,
                   466.164,
                   440.000,
@@ -63,7 +62,7 @@ console.log(winHeight);
       if (!lines[key]) {
         lines[key] = s.rect(10,100,100,10);
         // lines[key].attr('fill', '#D8D8D8');
-      } 
+      }
     }
   }
   // drawLines(keyOfC);
@@ -124,7 +123,7 @@ console.log(winHeight);
 
   // console.log(wave1);
 
-  // $('body').append(gameTemplate(data)); 
+  // $('body').append(gameTemplate(data));
 
       var canvasHeight  =   $( '#canvas' ).height(),
           canvasWidth   =   $( '#canvas' ).width();
